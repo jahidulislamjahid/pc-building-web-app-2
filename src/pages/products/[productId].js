@@ -1,10 +1,10 @@
+import { IconStarFilled, IconStarOutline } from "@/assets/icons";
 import Description from "@/components/Description";
 import RelatedProduct from "@/components/RelatedProduct";
 import Review from "@/components/Review";
 import Specification from "@/components/Specification";
 import Head from "next/head";
 import Image from "next/image";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const ProductDetails = ({ product }) => {
   const {
@@ -86,21 +86,16 @@ const ProductDetails = ({ product }) => {
                 <p>Rating </p>
                 <div className="text-yellow-400 ml-2 flex items-center">
                   {[...Array(roundedRating)]?.map((_, index) => (
-                    <AiFillStar key={index} />
+                    <IconStarFilled key={index} />
                   ))}
                   {[...Array(Math.max(5 - roundedRating, 0))].map(
                     (_, index) => (
-                      <AiOutlineStar key={index} />
+                      <IconStarOutline key={index} />
                     )
                   )}
                 </div>
               </div>
 
-              {/* <div className="lg:my-10  my-5">
-                <button className="py-3 px-10 rounded-md bg-black text-white">
-                  Buy Now
-                </button>
-              </div> */}
             </div>
           </div>
         </section>
@@ -163,14 +158,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { productId } = params;
 
-  // if (typeof window === "undefined") {
-  //   return {
-  //     props: {
-  //       product: [],
-  //     },
-  //     revalidate: 60,
-  //   };
-  // }
 
   try {
     const res = await fetch(
